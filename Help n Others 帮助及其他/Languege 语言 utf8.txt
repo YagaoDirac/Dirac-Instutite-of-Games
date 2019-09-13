@@ -1,0 +1,4 @@
+﻿Mostly in simplified Chinese.
+TXT files are in UTF-8 formation.
+
+主要是简体中文。
