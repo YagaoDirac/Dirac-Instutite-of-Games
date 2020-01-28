@@ -1,0 +1,23 @@
+LibreOffice (Word)
+
+https://www.libreoffice.org/discover/libreoffice/
+
+
+My files are editted in version 6.2.7.1. The text in the about page of LibreOffice Word are pasted below.
+
+版本: 6.2.7.1 (x64)
+Build ID: 23edc44b61b830b7d749943e020e96f5a7df63bf
+CPU 线程: 4; 操作系统: Windows 6.1; UI 渲染: GL; VCL: win; 
+区域语言: zh-CN (zh_CN); UI 语言: zh-CN
+Calc: threaded
+
+which mean:
+version:6.2.7.1 (x64)
+Build ID: 23edc44b61b830b7d749943e020e96f5a7df63bf
+CPU threads: 4; Operation System: Windows 6.1; UI Rendering(GPU): GL; VCL: win; 
+Zone and Language: zh-CN (zh_CN); UI Language: zh-CN
+Calc: threaded
+
+
+To see the popup window, find:
+Menu bar -> Help(H) -> About LibreOffice(A)
