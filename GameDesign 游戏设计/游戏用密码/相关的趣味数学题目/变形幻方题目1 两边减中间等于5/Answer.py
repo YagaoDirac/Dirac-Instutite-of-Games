@@ -16,25 +16,26 @@ if(0):
     exit(0)
 
 
+TheNumber = 5
+
 def check(maze):
     for hang in maze:
-        if (hang[0,0]+hang[0,2]-hang[0,1]) !=5:
+        if (hang[0,0]+hang[0,2]-hang[0,1]) !=TheNumber:
             return False
     temp = maze[0]+maze[2]-maze[1]
     for item in temp:
-        if 5!=item[0,0] or 5!=item[0,1] or 5!=item[0,2]:
+        if TheNumber!=item[0,0] or TheNumber!=item[0,1] or TheNumber!=item[0,2]:
             return False
-    if maze[0,0]+maze[2,2]-maze[1,1]!=5:
+    if maze[0,0]+maze[2,2]-maze[1,1]!=TheNumber:
         return False
-    if maze[2,0]+maze[0,2]-maze[1,1]!=5:
+    if maze[2,0]+maze[0,2]-maze[1,1]!=TheNumber:
         return False
     return True
 
 ###########################################
 
-for a in range (1,9):
-    print(a)
 
+#Notation: u = up, d= down, l = left , r= right.
 for ul in range(1,7):
     for u in range(1,10):
         if ul!=u:
@@ -51,7 +52,7 @@ for ul in range(1,7):
                                                 if dl!=ul and dl!=u and dl!=ur and dl!=l and dl!=mid and dl!=r:
                                                     for d in range(1,10):
                                                         if d!=ul and d!=u and d!=ur and d!=l and d!=mid and d!=r and d!=dl:
-                                                            for dr in range(ur,10):
+                                                            for dr in range(ul,10):#dr dosen't have to be greater than ur
                                                                 if dr!=ul and dr!=u and dr!= ur and dr!= l and dr!= mid and dr!= r and dr!= dl and dr!= d:
                                                                     theMaze = np.matrix([[ul,u,ur],[l,mid,r],[dl,d,dr]])
                                                                     result = check(theMaze)
