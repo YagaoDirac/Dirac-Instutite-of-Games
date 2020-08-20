@@ -2,6 +2,8 @@
 
 作者：YagaoDirac
 
+原文地址：https://github.com/YagaoDirac/Internal-Reference-of-Dirac-GamePlay-Research-and-Design-Institute/tree/master/%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5
+
 写在开头：
 山地要塞（Mtn Fortress）是异星工厂游戏里面的一个场景地图。事实上是这个游戏在2020年5月到今天（8月）的最有人气的多人场景地图。某种意义上也成了对联机有需求的异星工厂用户的必修课。改地图内有很多特有的设定，所以需要一个攻略。
 另外就是，我在猜，这个地图，大概是官方的人自己在做的吧，甚至都是上班时间做的。
@@ -180,6 +182,48 @@
 某个群里面聊这个事情聊了有几天了吧。mod的名字，Factorissimo2。当成一个容量超级大的箱子还是很好的。
 当然，相当于变相的增加了车上的尺寸，如此一来，有很多问题就解决了，比如在车上铺产线的问题。
 如果不会写代码，那这个方案应该是比较靠谱的。
+
+【6，4，用代码处理火车内部尺寸】
+原料：管理员1名
+1，使用/players，看看自己的名字是第几个，用/c game.print(game.players[这个地方写你觉得你是第几号].name)，比如
+/c game.print(game.players[2].name)
+如果看到确实是自己的名字，那么记住这个号码。我这儿就以2号来做示范
+2，进入火车内部。
+
+/c tiles = {}
+for x=20,25 do for y = 2,25 do
+tiles[#tiles+1] =  {name = 'blue-refined-concrete', position = {x, y}}
+end end
+game.players[2].surface.set_tiles(tiles,true)
+
+/c tiles = {}
+for x=26,1000 do for y = -500, 500 do
+tiles[#tiles+1] =  {name = 'blue-refined-concrete', position = {x, y}}
+end end
+game.players[2].surface.set_tiles(tiles,true)
+
+两段指令分开。第二段进去以后会有点卡，正常的，可能会有个10秒不到的卡顿。
+
+之后你们会发现，没有水，怎么办呢，当然是继续写指令。
+管理员站在需要水的地方的左上角。
+
+/c tiles = {} pos = game.players[2].position 
+for x=pos.x+2,pos.x+4 do for y = pos.y+2,pos.y+4 do
+tiles[#tiles+1] =  {name = 'water', position = {x, y}}
+end end
+game.players[2].surface.set_tiles(tiles,true)
+
+当然如果要把这个部分再变成普通的地面，就把指令里面的water，换成之前的blue-refined-concrete。这个名字就是地面的那个什么东西的名字，可以是任何一种。
+盖回去的代码如下，同样的，站在左上角。
+
+/c tiles = {} pos = game.players[2].position 
+for x=pos.x+2,pos.x+4 do for y = pos.y+2,pos.y+4 do
+tiles[#tiles+1] =  {name = 'blue-refined-concrete', position = {x, y}}
+end end
+game.players[2].surface.set_tiles(tiles,true)
+
+如果觉得这个尺寸有点问题，就改for后面的数字。应该很好理解吧。
+
 
 
 
