@@ -2,7 +2,7 @@
 
 作者：YagaoDirac
 
-原文地址：https://github.com/YagaoDirac/Internal-Reference-of-Dirac-GamePlay-Research-and-Design-Institute/tree/master/%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5
+获取最新更新，请直接查看原文地址：https://github.com/YagaoDirac/Internal-Reference-of-Dirac-GamePlay-Research-and-Design-Institute/tree/master/%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5
 
 写在开头：
 山地要塞（Mtn Fortress）是异星工厂游戏里面的一个场景地图。事实上是这个游戏在2020年5月到今天（8月）的最有人气的多人场景地图。某种意义上也成了对联机有需求的异星工厂用户的必修课。改地图内有很多特有的设定，所以需要一个攻略。
