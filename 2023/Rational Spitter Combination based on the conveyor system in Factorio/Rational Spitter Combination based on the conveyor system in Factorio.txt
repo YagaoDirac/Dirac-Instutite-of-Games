@@ -1,0 +1,34 @@
+Rational Spitter Combination based on the conveyor system in Factorio
+
+YagaoDirac
+
+github.com/yagaodirac/internal-reference......
+
+
+Introduction for the conveyor system in Factorio. If you have played Factorio, it's super safe to skip this part.
+The game has 3 levels of conveyors, they differ only with the speed.
+Within the same level, there are only 3 building based entities. By "building based" I mean, they can be placed on ground and handle item stream.
+They are:
+Plain conveyor. You can see this thing in almost all the similar games, Factorio, Shapez 1&2, Satisfactory, Automation Empire, Kubifactory, and so many.
+Underground conveyor. It's similar to a simply bridge but it's beneath. It's not a full function second layer of conveyor, but it indeed allows you to cross 2 lanes without mixing the stream. If you don't have to compress the area, this underground conveyor actually works perfectly.
+Splitter. It's 1x2 in size which gives it 2 input position and 2 output. It has 2 absolutely equivalent inputs, but only 2. If you need more, you can series more splitters. It has 2 output and gives out items absolutely evenly to them. If a spitter gets only 1 item, it put it on one of the output, and remember which is which. When it gets the second item, it guarentees to put is on the other output. So, if a bit stream goes through a spitter, it's basically spitted evenly. Seriesing more splitters can split stream further and still evenly. Also, splitters can be specified to get items from one side as possible, and only when the specified lane is empty, it receives from the other side. But this detail only applies to limited positions in this tutorial.
+
+If you skipped the upper part, now here's the interesting part.
+Another approach is provided in the last of this tuto, which is what I learnt from others. I invented the new tech based on the study I made on the old design.
+Here's the new one.
+
+Since series splitters split the stream further and evenly, it's possible to directly calculate the combination.
+Let's say we need to split the stream into 1:2, then, 1+2 is 3. The exponential of 2 which is not less than 3, is 4, it's 2 to 2. So we need 2 layers of splitters. The first layer gives 2 streams and they are 1:1. The second gives 1:1:1:1, 4 ones.
+Then 2 of the output of the second layers are combined to provide a 2 for one output. Then, one 1 is directly for the other output. Then we only have to handle the left 1. The hack is to put it back to the first splitter and make this lane received before the "input" lane. This structure can be simplified to use only 2 splitters. One of the layers 1 output fits the bigger output. This result is the same as the old tech.
+What if we need a 1:2:3:4? Step 1, sum them all, and get 10. The exponential of 2 which is not less than 10 is 16, it's 2 to 4.
+This means the input can be treated as a 16. The first layer splits it in to two 8s. Then the second layer gives 4 4s. We get the first output of 4. Then 2 of the left 3 4s are splitted into 4 2s. Now we have 2,2,2,2,4. One 2 of them fits the output of 2. Then we still have 2,2,2,4. 2+4 is 6, and it should go back to the first splitter and be received before the "input" lane. Then only 2 2s are left. Split one 2 into two 1s. Then we have 1,1,2. 1 fits the output of 1 and 1+2 fits the last output of 3. 
+The current splitter is only a variation based on splitter combination. Lets's we need a 1/10 of max current. First step is making a 1:9 splitter combination. Second step is put the output of 9 back into the input lane before the entire structure and be received first. In this structure, 2 splitters are set with the priority of which lane to get items.
+
+Where is the bottle neck of current. According to my knowledge, no priotize setting is needed for splitter combinations while the bottle neck appears at the input lane. For current limiters, the very first splitter( if compare to the splitter combination, this very first splitter is actually the extra one.) needs to be set priotize while the bottle neck appears after it.
+
+About the old design. 
+I don't remember where I saw it. The old design handles 1:n well but the size is O(n) for n. Btw, my new design is around O(log(sum)). 
+1 circle for 1:2, 2 circles for 1:3, n circles for 1:(n+1).
+It can be proofed with steady state analysis. For every splitter, the total input equals the total output and if it has 2 outputs, then they are equal. Then, solve system of equations. 
+
+

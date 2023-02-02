@@ -12,6 +12,8 @@ The pros and cons of formula based crafting systems:
 Pros:
 Every new rule added to the crafting system is multiplied to all the existing ones. So, it's pretty code amount effecient. I mean, very little code but really almost infinite recipes. This also make sure players have really a lot to dig in this game, which maybe provide this game with a super long lifespan, before players feel boring and everything in the game is just repeating.
 The same thing can be done to different ingredient. So it's possible to make the very original ingredient(i.e. ores) procedurally generates, w/ fancy logic or simply a mixture. Let's say a source gives out a1 and a bit b1, you make 1 into 2, then you game a2 and a bit b2, if a2 is good but b2 is useless. The game should provide a rule to handle the useless items. This also introduces more unlock types.
+"""From Scott in Automation Station Discord server, and probably employee of the corresponding project.
+Instead of players having to look up recipes, they can intuit their way to the correct solution by combining the different game mechanics. """
 I assume that only one rule set be added to this game, and then the second for edition 2. If we have 5 ideas, they are enough for 5 editions.
 
 Cons:
@@ -29,7 +31,7 @@ I think all the puzzling game rules can be used for this purpose. You can fine a
 Some suggestions:
 Allow no-op factories. Don't make the moves smart. Let players do anything. The similar to python vs c++. Let's say the Sokoban like rule set, if I have a o_o_o and a _oo_o, and I move the first one to the right side, both should be moved into _oo_o. If the algo finds the first o and move at most 2, then, o_o_o into _oo_o, and _oo_o into __ooo. In the first way the 2 ingredient converge into only 1 kind but the second way doesn't help. If the ore is 80% o_o_o and 20% _oo_o, this should make some realy difference.
 Don't make a main base in the mid. Use sources and multiple targets instead. Different items should go to different targets. They can be shops, or literally anything. Targets absorb what they want and give coins, or absorb what they don't want and give nothing. This design is equivalent to slitting the only main base into multiple bases.
-If you decide to make unstable or mixed or procedurally generated ores( or anything similar to this as the most original ingredient and not repeating all the time ), add a building to stats the recent 100 items pass through. It does nothing but let the player know the stats result. Players can use the same steps to make similar ingredients into same results if they can, and this tricky thing should be encouraged.
+If you decide to make unstable or mixed or procedurally generated ores( or anything similar to this as the most original ingredient and not repeating all the time ), add a conveyor monitor to stats the recent 100 items pass through. It does nothing but let the player know the stats result. Players can use the same steps to make similar ingredients into same results if they can, and this tricky thing should be encouraged.
 The splitter( belongs to the conveyer system in Factorio. Each only gives out what it gets evenly into 2 conveyers.) is a great design. It can be used to make any rational number splitter if they are combined properly. Btw, I invented it.
 
 
