@@ -1,0 +1,258 @@
+All the ways to get item into and out of a building that can be implemented in Factorio like games
+
+YagaoDirac
+
+github.com/yagaodirac/Internal-Reference-of-Dirac-Instutite-of-Game\2023
+This article was originally published in Automation Station's Discord server.
+
+
+
+To make this article really short, the transmission of liquid is not included, but it has a lot im common with item transmissions. Also, no fancy conveyor tricks are included. I may assume some specific designs of splitters in order to show the combination of different importing ways with different conveyor systems.
+
+***DO NOT SKIP LEGEND***
+***DO NOT SKIP LEGEND***
+***DO NOT SKIP LEGEND***
+In this article, I use fixed-width font(https://en.wikipedia.org/wiki/Monospaced_font) to show the structure. This trick shows square based case perfectly. 
+If your system is hexgon based, the basic idea should hold as well.
+Inserter is not included in legend. In the sepecific design, they are denoted specially.
+Legend:
+_: nothing here.
+b: building, or this tile is occupied by some building. Most buildings are not 1x1.
+c: c only means conveyor. 
+i: input. Building nearby grabs item on this conveyor automatically.
+o: output. Building nearby gives out item on this conveyor automatically.
+Uppercase and lowercase are used to distinguish between adjecent buildings and conveyors. For instance:
+1 2x2 building:
+bb
+bb
+2 2x2 buildings in a line:
+bbBB
+bbBB
+1 2x2 building with input beside it:
+_ii_
+ibbi
+ibbi
+_ii_
+2 2x2 buildings with input beside them:
+_iiII_
+ibbBBI
+ibbBBI
+_iiII_
+i is input for b, I is input for B. But sometimes I don't distinguish input for different buildings if it doesn't confuse.
+
+Conveyors connected to a 2x2 building:
+(input)cccccbb
+____________bbccccc(output)
+
+All the 5 legend is used throughout this article. Other legend is explained in examples.
+
+Now let's get started.
+
+
+How Factorio handles this.
+Factorio uses a inserter to connect different systems and entities which hold any item(machines, cargos, conveyor, vehicle, chest, turret, and picking from ground). So, players have to build conveyors, machines, and inserters. I don't like this design. The first version of Factorio was in 2013. So I think it's safe to skip their design.
+Upsides:
+Conveyors don't figure out where is there input, and where is their output. 
+Connect almost everything. This fits Factorio because they really have to many system and they have to get a way to exchange items inbetween them.
+Downsides:
+It's too much trouble to build.
+Too many entities, which can slow down the game when players go nuts with scale.
+
+How Mindustry handles this.
+Actually I don't remember how this game handles transmission of items.. I may make some mistakes. 
+Mindustry uses a simple trick. All machines iterate all the conveyors around it to see if they can pick anything from, and also iterate all of them to try putting items to. It means, one tile of conveyor can be used as input while output. This trick simplifies the programming of game but delays the troubles to players.
+While
+_ii_
+ibbi
+ibbi
+_ii_ 
+and
+_oo_
+obbo
+obbo
+_oo_
+at the same time.
+Players always need to scale their design. Scaling often results in:
+_iiIIiiII_
+ibbBBbbBBI
+ibbBBbbBBI
+_iiIIiiII_
+But all the input are output at the same time. When a crafting is a+b->c, a building needs 2 sorts of ingredients to start crafting, and when it only sees one of them, it's stucked. When the supplying of ingredient is not balanced well enough, the buildings only buffer 1 more ingredient for each, which mean, if no b is found, the machine only takes 2 a(s) and wait for any b(s). But if the output(c) is also put on to the lane, c(s) takes some space, which makes the case worse. This simplification sometimes blocks structures like:
+(input)cccccbb
+____________bbccccc(output)
+These's no guaruntee that the building would output products to the lower right corner. When scaling, this may cause trouble. 
+(input)cccccccccc
+___________bbBBbb
+___________cccccccccc(output)
+The conveyors face rightside. If any of the left 2 building output anything on to the upper conveyor, this blocks most rightside building from getting any ingredients.
+To make sure all the buildings work fine, players still have to use splitter conveyors, and specify the direction for each tile of conveyor when connect any bus to machines. Players are force to shift between buildings, rotate conveyors, and click mouse buttons multiple times, or paste multiple times.
+
+Mindustry's trick is already better than most of the other games.
+If we optimise the Mindustry's version a bit, I mean, my version. This new design needs players to learn a little bit, but still fairly easy. Also, it's not hard to make in game prompt gui to help new players.
+The basic idea is buildings pick items automatically from the nearer conveyor and put items to the farther ones.
+For a->b:
+__o__
+__i__
+oibio
+__i__
+__o__
+If building is 2x2:
+__oo__
+__ii__
+oibbio
+oibbio
+__oo__
+__ii__
+3 buildings in a line:
+__ooOOoo__
+__iiIIii__
+oibbBBbbio
+oibbBBbbio
+__ooOOoo__
+__iiIIii__
+The structure looks like:
+___________cccccccccc(output)
+(input)cccccccccc
+___________bbBBbb
+___________bbBBbb
+
+for a+b->c(2 into 1), and ignore the lower mirrored part:
+___ooOOoo__
+___iiIIii__
+___iiIIii__
+oiibbBBbbiio
+oiibbBBbbiio
+(ignored, the same as the upper part.)
+The structure looks like:
+___________cccccccccc(output)
+(input 1)cccccccccc
+(input 2)cccccccccc
+_____________bbBBbb
+_____________bbBBbb
+
+If the crafting has 2 stages, a into b and then b into c, with the rules upon, the structure is like:
+(input a)cccccccccc
+_____________bbBBbb(a->b)
+_____________bbBBbb
+___________________
+_____________cccccc(Note below)
+_____________bbBBbb(b->c)
+_____________bbBBbb
+___________________
+_____________cccccccccc(output c)
+Note:b as output of stage 1 is put here, then picked by the stage 2
+This structure can be compressed a bit, but the basic idea holds.
+
+This idea has a downside and it may cause issue.
+Let's say a 2->2 crafting, a+b->c+d, both a and b can be in the 1 and 2 lane:
+(input a)cccccccccc
+(input b)cccccccccc
+_____________bbBBbb
+_____________bbBBbb
+and
+(input b)cccccccccc
+(input a)cccccccccc
+_____________bbBBbb
+_____________bbBBbb
+both work.
+But the output has a sequence. The buildings put c only to a specific distance whild d onto another. This may lead to failure when try compressing the structures. If only c is needed for some later stage crafting whild d is not needed, and some other ingredient is needed for the later stage:
+a+b->c+d, c+e->f:
+_____________ccccccccccccccc(d here)
+___________________
+(input a)cccccccccc
+(input b)cccccccccc
+_____________bbBBbb(a+b->c+d)
+_____________bbBBbb
+___________________
+___________________
+_____________cccccc(c here)
+(input f)cccccccccc(but d is also put here)
+_____________bbBBbb(c+e->f)
+_____________bbBBbb
+___________________
+___________________
+_____________ccccccccccccccc(f)
+Because input f and output d appear at the same coord, they mix and may block stage 2.
+Maybe this is acceptable? Because the extreme compression is not needed to have fun.
+
+
+
+Then, it's still possible to make this structure simpler with some extra rules. 
+I didn't study this part very carefully. Let's say, if stage 1 building can put items directly into stage 2, or in the opposite direction, the lane inbetween can be omitted.
+
+For a->b, then b->c(or, 1->1, 1->1):
+If Stage 1 can put items into stage 2:
+case 1:
+(input a)cccccccccc
+_____________bbBBbb(a->b)
+_____________bbBBbb
+___________________
+_____________bbBBbb(b->c)
+_____________bbBBbb
+___________________
+_____________cccccccccc(output c)
+case 2:
+(input a)cccccccccc
+_____________bbBBbb(a->b)
+_____________bbBBbb
+_____________bbBBbb(b->c)
+_____________bbBBbb
+___________________
+_____________cccccccccc(output c)
+They both work.
+
+If Stage 2 can pick items from stage 1:
+(input a)cccccccccc
+_____________bbBBbb(a->b)
+_____________bbBBbb
+_____________bbBBbb(b->c)
+_____________bbBBbb
+___________________
+_____________cccccccccc(output c)
+
+For a->b, then b+c->d(or, 1->1, 2->1):
+If Stage 1 can put items into stage 2:
+(input a)cccccccccc
+_____________bbBBbb(a->b)
+_____________bbBBbb
+(input c)cccccccccc
+_____________bbBBbb(b->c)
+_____________bbBBbb
+___________________
+___________________
+_____________cccccccccc(output d)
+
+If Stage 2 can pick items from stage 1:
+(input a)cccccccccc
+_____________bbBBbb(a->b)
+_____________bbBBbb
+_____________bbBBbb(b->c)
+_____________bbBBbb
+___________________
+_____________cccccccccc(output c)
+
+This may bring some difference. The only purpose I introduce the extra rule is that, the buffer conveyor in between maybe omitted. But the downside is that players have to learn a bit more and this rule may confuse a bit in gameplay.
+
+Cascading is the only reason why I assign input nearer while output farther. If Cascading is not needed, then both designs are equivalent.
+
+At last, I have to say, square based mechanism fits all these design perfectly, while hexgon and all other grid systems don't. Shapez 2 was firstly designed with hexgon based tile system, then modified into the classic square based.
+For a lot reasons, I would suggest devs use square based system.
+
+This article is not pretty finished. If you need any more elaboration, let me know.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

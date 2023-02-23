@@ -2,7 +2,7 @@ Formula based crafting system for Factorio/Shapez like games.
 
 YagaoDirac
 
-github.com/yagaodirac/internal-reference......
+github.com/yagaodirac/Internal-Reference-of-Dirac-Instutite-of-Game\2023
 
 This is first posted in Automation Station's Discord channel. The text is too long to be post there. So I move it to my github. Hope you enjoy it.
 
