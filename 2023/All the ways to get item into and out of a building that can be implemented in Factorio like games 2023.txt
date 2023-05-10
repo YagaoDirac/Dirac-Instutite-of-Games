@@ -49,6 +49,18 @@ All the 5 legend is used throughout this article. Other legend is explained in e
 Now let's get started.
 
 
+Before we dive into all the details, we should consider some prerequisite. I think the listed decisions should be make before choosing from the designs:
+
+
+????????????????
+
+
+
+
+
+
+
+
 How Factorio handles this.
 Factorio uses a inserter to connect different systems and entities which hold any item(machines, cargos, conveyor, vehicle, chest, turret, and picking from ground). So, players have to build conveyors, machines, and inserters. I don't like this design. The first version of Factorio was in 2013. So I think it's safe to skip their design.
 Upsides:
