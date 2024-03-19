@@ -4,7 +4,8 @@
 
 YagaoDirac
 
-http://github.com/yagaodirac/Internal-Reference-of-Dirac-Instutite-of-Game\2023
+<!-- Not sure about the intended link here. Tried to pick a reasonable one. -->
+[github.com/yagaodirac/Internal-Reference-of-Dirac-Instutite-of-Game\2023](https://github.com/YagaoDirac/Dirac-Instutite-of-Games/tree/main/2023)
 
    Recently, I saw people started to make idle games more than 1 or 2 years ago. The pandemic finally left us. But very soon, I started to be aware of the issues in the games people are making. Since 2017, I played almost every idle game I can find, and I almost remember all of them. They are literally hundreds, if not more than a thousand. Most of them are similar, some are in a series, most are individual. 6 years later, people are still making similar games, and making the same mistakes, running into the same problems. Again, the experience in game industry is not accumulated enough. This is why I'm now writing this article, in English.
 
