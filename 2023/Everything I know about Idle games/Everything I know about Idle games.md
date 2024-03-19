@@ -52,6 +52,8 @@ So, if you make a lot upgrades like this, people don't get new content when they
 
    I think all idle game designers should know one important difference between resource and upgrades. Most games have 2~5 resources, but most games have at least 15 different form of upgrades, if you add resources to the game, it's always very powerful, unless it's crafting system(pic1.png). But if you add upgrades to the game, even in a good enough way, it's normal. If you happen to add it in a lame way, it doesn't help significantly. So, remember, it's better to design the game with multiple resources from the beginning, and unlock at least 2.
 
+![pic1.png alt text TK](pic1.png)
+
    Now, please look at pic1.png. In the png, I shown a lot of existing way to organize the upgrades. One thing I have to make super clear, is the difference between ingredient and resource. In the crafting system, every ingredient is from 1 or few recipes, usually 1, and goes for 1 or few product, but resources are from at least 10 ways and goes for at least 10 ways. It means, for every resource, you can add at least 20 upgrades to the game, but for every ingredient, it's usually no more than 5 recipes. And also, recipes look similar, but what you can do with a resource is basically everything, upgrades/crafting/challenge/unlocks/achievement and a lot, this is another reason why add resources is always more powerful for a game than adding ingredients.
 
    For multiplayer idle game, at least 2 thing can be added, transaction, pvp. Transaction and pvp are similar because they allow people to add information to the game on the fly. The content/information amount is quite different for single player and multiply players. If you allow people to add more informations to the game, you may take advantage of the players intelligence. I'm not good at these theory.
@@ -79,6 +81,8 @@ So, if you make a lot upgrades like this, people don't get new content when they
    According to convention, video games have plot(剧情), so the game progresses in a line. This causes some issue for games without plot. If a video game doesn't have any plot or is not stage based, it doesn't have to progress from the beginning to the end. Content/assets don't have to be organized in a line.
    
    From 2016, idle games use a prestige method to let people reset progress while obtain some global boost. In such a way, the early game content is reused, which is good, but late game content doesn't benifit from this. 
+
+![pic2.png alt text TK](pic2.png)
    
    In pic2.png, I shown some estimated reuse of content for different kind of games. The last one, idle game with random consquence of progress, doesn't exist for now. Someone please try it out. The basic idea is, the content is organised in phases, and every time a phase is finished, a random phase is unlocked for player. Or it's like, from stage x to stage y, where x and y are random numbers. And phases can be duplicated, or overlapped, or anything. This trich helps late game content reuse. In fact, in such a way, there's no way to say if some content is early or late, they come randomly.
 
@@ -94,8 +98,13 @@ So, if you make a lot upgrades like this, people don't get new content when they
    Resource isolation always work in idle games but it's not the only way. Resource isolation is pretty hard, before a resource is unlocked, no matter what people do, they don't get it. It's not about time or anything, it's simply not possible. It feels like stage based style.
    
    Number isolation is a soft way, and yeah, it always works for all the idle games. It feels like, if the resource 2 is 1000 times expensive than resource 1, so people can accumulate more to get a slightly easier start of next phase, but it's controllable. The example is like: someone stayed in phase 1 for longer than expected and accumulated 5000 coins. It spent 1000 coins for the critical unlock and unlocked a lot new content. In the new content, the cheapest upgrade is around 500 coins, others are all above 1000 coins. It only had 4000 coins left, so only can afford of few upgrades. The very beginning of phase 2 was in fact easier for it, but the difficulty recovers to the design level after 1 or 2 minutes, which is great.
+
+
+![pic3.png alt text TK](pic3.png)
    
    If the isolation is considered with the relationship between resources/ingredients, it looks like pic3.png. Most idle games don't have any space/maps system, even they have, the structure is similar. For resource based cases, both isolations are possible. For crafting cases, it's a bit messy. Crafting chain, or sometimes we call it pipeline managing, doesn't support resource isolation. Crafting tree doesn't support number isolation well enough. Crafting graph supports both but only normally, I personally don't recommend a super big system in crafting graph style.
+
+![pic4.png alt text TK](pic4.png)
    
    pic4.png shows what happens when isolation combines with reusing. But actually you can do almost anything. A simple trick is like, if the game resets progression of any parts, simply keep some global upgrades/boots, make sure people feel their progress is saved somehow and actually contributes at least a bit.
    
